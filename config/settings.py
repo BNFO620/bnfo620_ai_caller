@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# each models information, the main function will create an instance of the model and establish the connection
+# set each models information
 MODEL_INFO = {
     "CHATGPT": {
         "name": "CHATGPT",
@@ -34,3 +34,7 @@ MODEL_INFO = {
         "client_name": "ANTHROPIC"
     }
 }
+
+# set the input and output file paths
+INPUT_FILE_PATH = "../Data/reference_data/test_reference_data.txt"
+OUTPUT_FILE_PATH = "../Data/program_data/test_program_data.txt"

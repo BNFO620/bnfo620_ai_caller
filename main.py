@@ -1,6 +1,7 @@
 """
 This is the main script for this project.
-1. Initialize AI models: initializing the provided models stored in the settings folder.
+1. Initialize AI models: initializing and establishing client connection for the provided models in the config/settings file.
+2.
 """
 
 from config import settings
