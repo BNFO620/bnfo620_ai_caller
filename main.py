@@ -1,16 +1,25 @@
-# This is a sample Python script.
+"""
+This is the main script for this project.
+1. Initialize AI models: initializing the provided models stored in the settings folder.
+"""
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from config import settings
+from Models.Ai import Ai
 
 
-# Press the green button in the gutter to run the script.
+def initialize_ai_models() -> list[Ai]:
+    ai_models: list[Ai] = []
+    for model in settings.MODEL_INFO:
+        ai_model = Ai(
+            settings.MODEL_INFO[model]["name"],
+            settings.MODEL_INFO[model]["version"],
+            settings.MODEL_INFO[model]["url"],
+            settings.MODEL_INFO[model]["key"],
+            settings.MODEL_INFO[model]["client_name"]
+        )
+        ai_models.append(ai_model)
+    return ai_models
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    ai_models = initialize_ai_models()
