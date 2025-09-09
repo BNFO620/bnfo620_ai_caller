@@ -1,8 +1,10 @@
 """
 A single organism
 """
+from dataclasses import dataclass
 
 
+@dataclass
 class Organism:
     genus: str
     species: str

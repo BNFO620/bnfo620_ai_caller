@@ -1,8 +1,9 @@
 """A single AI model"""
+from dataclasses import dataclass
 import openai
 import anthropic
 
-
+@dataclass
 class Ai:
     name: str
     version: str

@@ -1,6 +1,8 @@
 """A single organism has many traits"""
+from dataclasses import dataclass
 
 
+@dataclass
 class Trait:
     abbreviation: str
     name: str

@@ -1,26 +1,43 @@
 """
 This is the main script for this project.
-1. Initialize AI models: initializing and establishing client connection for the provided models in the config/settings file.
-2.
 """
-
+from models import Organism, Ai
 from config import settings
-from Models.Ai import Ai
+from csv import DictReader
 
 
 def initialize_ai_models() -> list[Ai]:
     ai_models: list[Ai] = []
+
     for model in settings.MODEL_INFO:
-        ai_model = Ai(
-            settings.MODEL_INFO[model]["name"],
-            settings.MODEL_INFO[model]["version"],
-            settings.MODEL_INFO[model]["url"],
-            settings.MODEL_INFO[model]["key"],
-            settings.MODEL_INFO[model]["client_name"]
+        ai_models.append(
+            Ai(
+                settings.MODEL_INFO[model]["name"],
+                settings.MODEL_INFO[model]["version"],
+                settings.MODEL_INFO[model]["url"],
+                settings.MODEL_INFO[model]["key"],
+                settings.MODEL_INFO[model]["client_name"]
+            )
         )
-        ai_models.append(ai_model)
     return ai_models
 
 
+def initialize_organisms() -> list[Organism]:
+    organisms: list[Organism] = []
+
+    # read organism names from the reference data file and create Organism objects for each one
+    with open(settings.INPUT_FILE_PATH, "r") as file:
+        reader = DictReader(file)
+        for row in reader:
+            organisms.append(
+                Organism(
+                    row["Genus"],
+                    row["Species"]
+                )
+            )
+    return organisms
+
+
 if __name__ == '__main__':
-    ai_models = initialize_ai_models()
+    initialized_ai_models = initialize_ai_models()
+    initialized_organisms = initialize_organisms()
