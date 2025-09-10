@@ -6,6 +6,8 @@ from utils import determine_traits
 from config import settings
 from csv import DictReader
 
+from utils.add_reference_data import add_reference_data
+
 
 def initialize_ai_models() -> list[Ai]:
     ai_models: list[Ai] = []
@@ -44,5 +46,6 @@ if __name__ == '__main__':
     initialized_ai_models = initialize_ai_models()
     chosen_traits = determine_traits()
     initialized_organisms = initialize_organisms(chosen_traits)
+    add_reference_data(initialized_organisms)
 
     print(f"initialized_organisms: {initialized_organisms}")
