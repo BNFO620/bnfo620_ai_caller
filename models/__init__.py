@@ -1,3 +1,4 @@
 from .ai import Ai
-from .organism import Organism
 from .trait import Trait
+from .trait_value import TraitValue
+from .organism import Organism

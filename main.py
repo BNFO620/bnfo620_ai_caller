@@ -2,6 +2,7 @@
 This is the main script for this project.
 """
 from models import Organism, Ai
+from utils import determine_traits
 from config import settings
 from csv import DictReader
 
@@ -22,7 +23,7 @@ def initialize_ai_models() -> list[Ai]:
     return ai_models
 
 
-def initialize_organisms() -> list[Organism]:
+def initialize_organisms(traits) -> list[Organism]:
     organisms: list[Organism] = []
 
     # read organism names from the reference data file and create Organism objects for each one
@@ -32,7 +33,8 @@ def initialize_organisms() -> list[Organism]:
             organisms.append(
                 Organism(
                     row["Genus"],
-                    row["Species"]
+                    row["Species"],
+                    traits
                 )
             )
     return organisms
@@ -40,4 +42,7 @@ def initialize_organisms() -> list[Organism]:
 
 if __name__ == '__main__':
     initialized_ai_models = initialize_ai_models()
-    initialized_organisms = initialize_organisms()
+    chosen_traits = determine_traits()
+    initialized_organisms = initialize_organisms(chosen_traits)
+
+    print(f"initialized_organisms: {initialized_organisms}")

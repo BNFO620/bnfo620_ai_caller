@@ -1,1 +1,1 @@
-from .extract_organism_name import extract_organism_name
+from .determine_traits import determine_traits

@@ -1,15 +1,14 @@
 """A single organism has many traits"""
 from dataclasses import dataclass
+from .trait_value import TraitValue
 
 
 @dataclass
 class Trait:
-    abbreviation: str
+    column_id: str
     name: str
-    ref_value: str
-    ai_value: str
+    units: str | None
+    values: TraitValue | None
 
-    def __init__(self, abbreviation: str, name: str):
-        self.abbreviation = abbreviation
-        self.name = name
-
+    def __str__(self):
+        return f"{self.name} ({self.column_id})"
