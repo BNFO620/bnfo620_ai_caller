@@ -12,4 +12,6 @@ class Trait:
     values: TraitValue | None
 
     def __str__(self):
-        return f"{self.name} ({self.column_id})"
+        return (f"Trait: {self.name}\n"
+                f"Abbreviation: {self.column_id}\n"
+                f"Values: {self.values}\n")

@@ -40,6 +40,7 @@ if __name__ == '__main__':
         for prompt in prompts:
             response = fetch_ai_responses(prompt)
             print(f"response: {response}")
-            add_values(organisms, response)
+            add_values(organism, response)
+            print(f"organism: {organism}")
 
 

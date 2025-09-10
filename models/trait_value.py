@@ -10,4 +10,5 @@ class TraitValue:
     ai_values: dict[str, str] | None
 
     def __str__(self):
-        return f"{self.reference_value} {self.ai_values}"
+        return (f"Reference Value: {self.reference_value}\n "
+                f"AI Response: {self.ai_values}")

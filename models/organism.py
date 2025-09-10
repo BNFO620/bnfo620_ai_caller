@@ -12,4 +12,6 @@ class Organism:
     traits: list[Trait]
 
     def __str__(self):
-        return f"{self.genus} {self.species}"
+        return (f"Genus: {self.genus}\n "
+                f"Species: {self.species}\n"
+                f"Traits: {self.traits}")
