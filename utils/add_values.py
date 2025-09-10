@@ -24,7 +24,7 @@ def add_values(organism, responses):
                     reference_value = matching_row[trait.column_id]
                     trait.values = TraitValue(
                         reference_value=str(reference_value),
-                        ai_values=responses
+                        ai_response=responses
                     )
                 else:
                     print(f"No reference value found for trait {trait.name} in row {matching_row}")

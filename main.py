@@ -7,6 +7,7 @@ from config import settings
 from csv import DictReader
 from utils import add_values, fetch_ai_responses
 from utils.generate_prompt import generate_prompts
+from utils.output_results import output_results
 
 
 def initialize_organisms(traits) -> list[Organism]:
@@ -33,14 +34,21 @@ if __name__ == '__main__':
 
     # generate prompts for each organism and their traits
     for organism in organisms:
+
         prompts = generate_prompts(organism)
         print(f"generated {len(prompts)} prompt(s).")
 
-        # use the prompt to fetch an AI response
-        for prompt in prompts:
-            response = fetch_ai_responses(prompt)
-            print(f"response: {response}")
-            add_values(organism, response)
-            print(f"organism: {organism}")
+        # fetch an AI response for each prompt
+        responses = {}
+        for trait_name, prompt in prompts.items():
+            ai_response = fetch_ai_responses(prompt)
+            responses[trait_name] = ai_response
+            print(f"ai_response: {ai_response}")
+
+        add_values(organism, responses)
+        print(f"organism: {organism}")
+
+    # output the results to a csv file
+    output_results(organisms)
 
 
