@@ -6,8 +6,10 @@ from config import settings
 from models import TraitValue
 
 
-def add_reference_data(organisms):
+def add_values(organisms, responses):
+    # TODO: gotta add the ai values too, so far this just adds the reference values
 
+    # REFERENCE DATA
     with open(settings.INPUT_FILE_PATH, "r") as file:
         reader = DictReader(file)
         rows = list(reader)

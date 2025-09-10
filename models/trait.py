@@ -8,6 +8,7 @@ class Trait:
     column_id: str
     name: str
     units: str | None
+    value_format: str
     values: TraitValue | None
 
     def __str__(self):

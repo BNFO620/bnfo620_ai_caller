@@ -17,11 +17,15 @@ def determine_traits() -> list[Trait]:
             if trait_abbreviation in raw_traits and trait_abbreviation not in added_traits:
                 trait_name = input("Enter the non-abbreviated name of the trait: ")
                 units = input("If this trait has units enter the units of the trait, otherwise leave blank: ")
+                value_format = input("Enter the expected format of the values for this trait (default: number-number or number or null): ")
+                if not value_format:
+                    value_format = "number-number or number or null"
                 added_traits.append(
                     Trait(
                         column_id=trait_abbreviation,
                         name=trait_name,
                         units=units,
+                        value_format=value_format,
                         values=None
                     )
                 )

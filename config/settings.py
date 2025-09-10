@@ -11,18 +11,26 @@ load_dotenv()
 AI_MODELS = {
     "CHATGPT": {
         "version": "gpt-4o-mini",
+        "max_tokens": 500,
+        "temperature": 0,
         "client": openai.OpenAI(api_key=os.getenv("CHATGPT_KEY")),
     },
     "GEMINI": {
         "version": "gemini-2.5-flash",
+        "max_tokens": 500,
+        "temperature": 0,
         "client": genai.client.Client(api_key=os.getenv("GEMINI_KEY")),
     },
     "DEEPSEEK": {
         "version": "deepseek-chat",
+        "max_tokens": 500,
+        "temperature": 0,
         "client": openai.OpenAI(api_key=os.getenv("DEEPSEEK_KEY"), base_url="https://api.deepseek.com/v1/"),
     },
     "CLAUDE": {
-        "version": "claude-3.5-sonnet",
+        "version": "claude-sonnet-4-20250514",
+        "max_tokens": 500,
+        "temperature": 0,
         "client": anthropic.Anthropic(api_key=os.getenv("CLAUDE_KEY")),
     }
 }
