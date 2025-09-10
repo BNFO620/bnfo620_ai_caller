@@ -1,6 +1,6 @@
 from csv import DictReader
 from config import settings
-from models import Trait, TraitValue
+from models import Trait
 
 
 def determine_traits() -> list[Trait]:

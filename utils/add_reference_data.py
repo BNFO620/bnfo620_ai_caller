@@ -27,15 +27,11 @@ def add_reference_data(organisms):
 
                     # add the reference value to the trait object
                     trait.values = TraitValue(
-                        reference_value=reference_value,
+                        reference_value=str(reference_value),
                         ai_values=None
                     )
                 else:
                     print(f"No reference value found for trait {trait.name} in row {matching_row}")
-                    trait.values = TraitValue(
-                        reference_value=None,
-                        ai_values=None
-                    )
         else:
             print(f"No matching row found for organism {organism.genus} {organism.species}")
 

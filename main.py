@@ -1,28 +1,11 @@
 """
-This is the main script for this project.
+This is the main script. It initializes organism and AI model objects from provided reference data and config file.
 """
-from models import Organism, Ai
+from models import Organism
 from utils import determine_traits
 from config import settings
 from csv import DictReader
-
 from utils.add_reference_data import add_reference_data
-
-
-def initialize_ai_models() -> list[Ai]:
-    ai_models: list[Ai] = []
-
-    for model in settings.MODEL_INFO:
-        ai_models.append(
-            Ai(
-                settings.MODEL_INFO[model]["name"],
-                settings.MODEL_INFO[model]["version"],
-                settings.MODEL_INFO[model]["url"],
-                settings.MODEL_INFO[model]["key"],
-                settings.MODEL_INFO[model]["client_name"]
-            )
-        )
-    return ai_models
 
 
 def initialize_organisms(traits) -> list[Organism]:
@@ -43,7 +26,6 @@ def initialize_organisms(traits) -> list[Organism]:
 
 
 if __name__ == '__main__':
-    initialized_ai_models = initialize_ai_models()
     chosen_traits = determine_traits()
     initialized_organisms = initialize_organisms(chosen_traits)
     add_reference_data(initialized_organisms)
