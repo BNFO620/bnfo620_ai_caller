@@ -32,8 +32,8 @@ def determine_traits() -> list[Trait]:
                         )
                     )
                 )
-                more_traits = input(f"{trait_name} added successfully!Do you want to add another trait? y/n:\n").lower().strip("")
+                more_traits = input(f"{trait_name} added successfully! Do you want to add another trait? y/n:\n").lower().strip("")
             else:
                 print("Invalid trait name. Please try again.")
-    print(f"You have added {len(added_traits)} trait(s) out of {len(raw_traits)} possible traits.")
+    print(f"\n\nYou have added {len(added_traits)} trait(s) out of {len(raw_traits)} possible traits.")
     return added_traits

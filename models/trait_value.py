@@ -1,6 +1,7 @@
 """
 A trait can have many values (reference values, chatgpt values, gemini values)
 """
+import json
 from dataclasses import dataclass
 from config import settings
 from csv import DictReader
@@ -12,8 +13,16 @@ class TraitValue:
     ai_response: dict[str, str] | None
 
     def __str__(self):
-        return (f"\nReference Value: {self.reference_value}"
-                f"\nAI Response: {self.ai_response}")
+        output = f"\n\tReference Value: {self.reference_value}"
+        output += "\n\tAI Responses:"
+
+        for model, response in self.ai_response.items():
+            if response:
+                parsed_response = json.loads(response)
+                for trait, value in parsed_response.items():
+                    output += f"\n\t\t{model}: {value}"
+
+        return output
 
     def set_reference_value(self, genus: str, species: str, column_id: str):
         with open(settings.INPUT_FILE_PATH, "r") as file:
@@ -30,5 +39,4 @@ class TraitValue:
                 self.reference_value = str(matching_row[column_id])
 
     def set_ai_response(self, ai_response: dict[str, str]):
-        # TODO: clean up ai_response
         self.ai_response = ai_response

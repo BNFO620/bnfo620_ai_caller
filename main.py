@@ -35,14 +35,13 @@ def initialize_organisms(selected_traits) -> list[Organism]:
                     organism_traits
                 )
             )
-    print(f"created organism:\n{new_organisms} ")
     return new_organisms
 
 
 if __name__ == '__main__':
     chosen_traits = determine_traits()
     organisms = initialize_organisms(chosen_traits)
-    print(f"created {len(organisms)} organism(s).")
+    print(f"Found {len(organisms)} organism(s) in {settings.INPUT_FILE_PATH}")
 
     # generate prompts for each organism trait
     for organism in organisms:
@@ -50,15 +49,17 @@ if __name__ == '__main__':
 
         # fetch response for each trait
         for trait_name, prompt in prompts.items():
+            print(f"\n\nasking models for the {trait_name} of {organism.genus} {organism.species}...")
             ai_responses = fetch_ai_responses(prompt)
 
             # find trait by name and set ai_response
             for trait in organism.traits:
                 if trait.name == trait_name:
                     trait.values.set_ai_response(ai_responses)
+                    print(f"updated ai_response for {organism}")
                     break
 
-        print(f"updated organism:\n{organism}")
+        # output the results to a csv file
+        output_results(organism)
 
-    # output the results to a csv file
-    output_results(organisms)
+    print(f"results saved in {settings.OUTPUT_FILE_PATH}")

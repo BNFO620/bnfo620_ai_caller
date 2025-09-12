@@ -3,7 +3,6 @@ A single organism
 """
 from dataclasses import dataclass
 from .trait import Trait
-from .trait_value import TraitValue
 
 
 @dataclass
@@ -17,9 +16,8 @@ class Organism:
 
     def __str__(self):
         traits_str = "\n".join(str(trait) for trait in self.traits)
-        return (f"\nGenus: {self.genus}"
-                f"\nSpecies: {self.species}"
-                f"\nTraits: \n{traits_str}")
+        return (f"{self.genus} {self.species}"
+                f"\n\n\t{traits_str}")
 
     def initialize_reference_values(self):
         for trait in self.traits:

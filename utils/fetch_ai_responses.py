@@ -16,15 +16,15 @@ def fetch_ai_responses(prompt):
         client = model_configuration["client"]
         messages = [{"role": "user", "content": prompt}]
 
-        # fetch claude response
-        if model == "CLAUDE":
-            print(f"asking claude...")
-            raw_response = client.messages.create(
+        # fetch chatgpt response
+        if model == "CHATGPT":
+            print(f"asking chatgpt...")
+            raw_response = client.chat.completions.create(
                 model=version,
-                max_tokens=max_tokens,
+                temperature=temperature,
                 messages=messages
             )
-            responses[model] = raw_response.content[0].text.strip()
+            responses[model] = raw_response.choices[0].message.content
 
         # fetch gemini response
         elif model == "GEMINI":
@@ -45,17 +45,17 @@ def fetch_ai_responses(prompt):
             )
             responses[model] = raw_response.choices[0].message.content
 
-        # fetch chatgpt response
-        elif model == "CHATGPT":
-            print(f"asking chatgpt...")
-            raw_response = client.chat.completions.create(
+        # fetch claude response
+        elif model == "CLAUDE":
+            print(f"asking claude...")
+            raw_response = client.messages.create(
                 model=version,
-                temperature=temperature,
+                max_tokens=max_tokens,
                 messages=messages
             )
-            responses[model] = raw_response.choices[0].message.content
+            responses[model] = raw_response.content[0].text.strip()
 
         else:
-            print(f"Model {model} not found.")
-    print(f"responses from ai models:\n{responses}")
+            print(f"{model} ai model not found.")
+
     return responses
