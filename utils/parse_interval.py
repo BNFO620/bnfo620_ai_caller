@@ -5,7 +5,7 @@ from models import Interval
 def parse_interval(interval: str | None) -> Interval:
 
     if not interval:
-        return Interval(None, None, interval or "")
+        return Interval(None, None, interval)
 
     interval = interval.replace("–", "-")
     # TODO: add annotations for the regex pattern

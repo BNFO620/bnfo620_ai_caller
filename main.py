@@ -25,8 +25,8 @@ def initialize_organisms(selected_traits) -> list[Organism]:
                     units=selected_trait.units,
                     value_format=selected_trait.value_format,
                     values=TraitValue(
-                        reference_value="",
-                        ai_response={}
+                        reference=None,
+                        results={}
                     )
                 ))
             new_organisms.append(
@@ -36,34 +36,29 @@ def initialize_organisms(selected_traits) -> list[Organism]:
                     organism_traits
                 )
             )
+    print(f"Found {len(new_organisms)} organism(s) in {settings.INPUT_FILE_PATH}")
     return new_organisms
 
 
 async def main():
     chosen_traits = determine_traits()
     organisms = initialize_organisms(chosen_traits)
-    print(f"Found {len(organisms)} organism(s) in {settings.INPUT_FILE_PATH}")
 
-    # generate prompts for each organism trait
     for organism in organisms:
         prompts = generate_prompts(organism)
 
         # fetch response for each trait
-        for trait_name, prompt in prompts.items():
-            print(f"\n\nasking models for the {trait_name} of {organism.genus} {organism.species}...")
-            ai_responses = await fetch_ai_responses(prompt)
+        for trait, prompt in prompts.items():
+            responses = await fetch_ai_responses(prompt)
 
-            # find trait by name and set ai_response
-            for trait in organism.traits:
-                for model, response in ai_responses.items():
-                    trait.values.set_ai_response(model, response)
-                    print(f"updated ai_response for {organism}")
-                    break
+            # update the organism with the response
+            for model, response in responses.items():
+                trait.values.set_results(model, response)
+                break
 
-        # output the results to a csv file
         output_results(organism)
 
-    print(f"results saved in {settings.OUTPUT_FILE_PATH}")
+    print(f"all done! results saved in {settings.OUTPUT_FILE_PATH}")
 
 
 if __name__ == '__main__':

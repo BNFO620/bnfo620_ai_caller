@@ -27,8 +27,8 @@ def determine_traits() -> list[Trait]:
                         units=units,
                         value_format=value_format,
                         values=TraitValue(
-                            reference_value="",
-                            ai_response={}
+                            reference=None,
+                            results={}
                         )
                     )
                 )

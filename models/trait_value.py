@@ -23,7 +23,7 @@ class ModelResult:
 
 @dataclass
 class TraitValue:
-    reference: Interval
+    reference: Interval | None
     results: dict[str, ModelResult]  # "model_name": result
 
     def __str__(self):

@@ -21,4 +21,4 @@ class Organism:
 
     def initialize_reference_values(self):
         for trait in self.traits:
-            trait.values.set_reference_value(self.genus, self.species, trait.column_id)
+            trait.values.set_reference(self.genus, self.species, trait.column_id)

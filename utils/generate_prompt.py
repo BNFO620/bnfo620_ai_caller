@@ -6,6 +6,7 @@ creates a prompt for each trait that an organism has
 def generate_prompts(organism):
     prompts = {}
     organism_name = f"{organism.genus} {organism.species}"
+
     for trait in organism.traits:
         prompt = (
             f'Provide the {trait.name} reference values for {organism_name}.\n'
