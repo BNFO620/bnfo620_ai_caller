@@ -22,3 +22,11 @@ Crotalus,stejnegeri,dorsal scale count,25–29,CHATGPT,23-27
 Crotalus,stejnegeri,dorsal scale count,25–29,GEMINI,25
 Crotalus,stejnegeri,dorsal scale count,25–29,DEEPSEEK,25-25
 Crotalus,stejnegeri,dorsal scale count,25–29,CLAUDE,23-25
+Crotalus,estebanensis,ventral scale count,178–199,CHATGPT,24-27
+Crotalus,estebanensis,ventral scale count,178–199,GEMINI,170-182
+Crotalus,estebanensis,ventral scale count,178–199,DEEPSEEK,null
+Crotalus,estebanensis,ventral scale count,178–199,CLAUDE,165-177
+Crotalus,stejnegeri,ventral scale count,171–178,CHATGPT,159-183
+Crotalus,stejnegeri,ventral scale count,171–178,GEMINI,171-184
+Crotalus,stejnegeri,ventral scale count,171–178,DEEPSEEK,167-174
+Crotalus,stejnegeri,ventral scale count,171–178,CLAUDE,160-180

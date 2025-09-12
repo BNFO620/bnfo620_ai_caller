@@ -1,61 +1,70 @@
 """
 Makes a request to each AI model and returns the response
 """
+import asyncio
 from config import settings
 
 
-def fetch_ai_responses(prompt):
-    # fetch_ai_responses should return {model_name: ai_result_string}
-    responses: dict[str, str] = {}
+async def fetch_chatgpt(client, model, prompt):
+    print(f"asking chatgpt...")
+    raw_response = await client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return "CHATGPT", raw_response.choices[0].message.content
+
+
+async def fetch_gemini(client, model, prompt):
+    print(f"asking gemini...")
+    raw_response = await client.aio.models.generate_content(
+        model=model,
+        contents=prompt
+    )
+    return "GEMINI", raw_response.text
+
+
+async def fetch_deepseek(client, model, prompt):
+    print(f"asking deepseek...")
+    raw_response = await client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return "DEEPSEEK", raw_response.choices[0].message.content
+
+
+async def fetch_claude(client, model, prompt):
+    print(f"asking claude...")
+    raw_response = await client.messages.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=1024
+    )
+    return "CLAUDE", raw_response.content[0].text.strip()
+
+
+async def fetch_ai_responses(prompt):
+    tasks = []
 
     for model_name, model_configuration in settings.AI_MODELS.items():
-        model = model_name
-        version = model_configuration["version"]
-        max_tokens = model_configuration["max_tokens"]
-        temperature = model_configuration["temperature"]
         client = model_configuration["client"]
-        messages = [{"role": "user", "content": prompt}]
+        model = model_configuration["version"]
 
-        # fetch chatgpt response
-        if model == "CHATGPT":
-            print(f"asking chatgpt...")
-            raw_response = client.chat.completions.create(
-                model=version,
-                temperature=temperature,
-                messages=messages
-            )
-            responses[model] = raw_response.choices[0].message.content
-
-        # fetch gemini response
-        elif model == "GEMINI":
-            print(f"asking gemini...")
-            raw_response = client.models.generate_content(
-                model=version,
-                contents=prompt
-            )
-            responses[model] = raw_response.text
-
-        # fetch deepseek response
-        elif model == "DEEPSEEK":
-            print(f"asking deepseek...")
-            raw_response = client.chat.completions.create(
-                model=version,
-                temperature=temperature,
-                messages=messages
-            )
-            responses[model] = raw_response.choices[0].message.content
-
-        # fetch claude response
-        elif model == "CLAUDE":
-            print(f"asking claude...")
-            raw_response = client.messages.create(
-                model=version,
-                max_tokens=max_tokens,
-                messages=messages
-            )
-            responses[model] = raw_response.content[0].text.strip()
-
+        if model_name == "CHATGPT":
+            tasks.append(fetch_chatgpt(client, model, prompt))
+        elif model_name == "GEMINI":
+            tasks.append(fetch_gemini(client, model, prompt))
+        elif model_name == "DEEPSEEK":
+            tasks.append(fetch_deepseek(client, model, prompt))
+        elif model_name == "CLAUDE":
+            tasks.append(fetch_claude(client, model, prompt))
         else:
-            print(f"{model} ai model not found.")
+            print(f"{model_name} ai model not found.")
+
+    results = await asyncio.gather(*tasks)
+
+    responses = {}
+    for result in results:
+        model, response = result
+        responses[model] = response
 
     return responses
