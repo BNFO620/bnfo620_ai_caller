@@ -10,12 +10,15 @@ import json
 
 
 def output_results(organism):
+    output_file_path = settings.OUTPUT_FILE_PATH
     fieldnames = ["genus", "species", "trait", "ref_range", "ai_model", "ai_result"]
-    with open(settings.OUTPUT_FILE_PATH, "a", newline="") as outfile:
+
+    with open(output_file_path, "a", newline="") as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 
-        if not os.path.exists(settings.OUTPUT_FILE_PATH):
-            writer.writeheader()
+        if not os.path.exists(output_file_path):
+            if os.path.getsize(output_file_path) == 0:
+                writer.writeheader()
 
         for trait in organism.traits:
             ai_responses = trait.values.ai_response

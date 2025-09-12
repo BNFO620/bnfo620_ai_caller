@@ -6,6 +6,9 @@ from google import genai
 
 load_dotenv()
 
+# set the input and output file paths
+INPUT_FILE_PATH = "data/reference_data/test_data.csv"
+OUTPUT_FILE_PATH = "data/program_data/program_data.csv"
 
 # set each models information
 AI_MODELS = {
@@ -27,7 +30,24 @@ AI_MODELS = {
     }
 }
 
+# schema
+SCHEMA = {
+    "Organism": {
+        "genus": "str",
+        "species": "str",
+        "traits": {
+            "column_id": "str",
+            "name": "str",
+            "units": "str | None",
+            "value_format": "str",
+            "values": {
+                "reference_value": "str",
+                "ai_response": {
+                    "model": "str",
+                    "value": "str"
+                }
+            }
+        }
+    }
+}
 
-# set the input and output file paths
-INPUT_FILE_PATH = "data/reference_data/test_data.csv"
-OUTPUT_FILE_PATH = "data/program_data/program_data.csv"
