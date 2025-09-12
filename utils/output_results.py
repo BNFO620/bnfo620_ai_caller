@@ -9,32 +9,26 @@ import json
 
 
 def output_results(organisms):
-    fieldnames = ["Genus", "Species", "Trait", "Reference_Value", "AI_Model", "AI_Response"]
+    fieldnames = ["genus", "species", "trait", "ref_range", "ai_model", "ai_result"]
     with open(settings.OUTPUT_FILE_PATH, "w", newline="") as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         writer.writeheader()
 
         for organism in organisms:
             for trait in organism.traits:
-                values = trait.values
-                ai_responses = values.ai_response.get(trait.name, {})
+                ai_responses = trait.values.ai_response
 
-                for model, response in ai_responses.items():
-                    if isinstance(response, str):
-                        parsed_response = json.loads(response)
-                        if isinstance(parsed_response, dict):
-                            ai_value = parsed_response.get(trait.name, "")
-                        else:
-                            ai_value = str(parsed_response)
-                    else:
-                        ai_value = str(response)
+                for model, ai_result_json in ai_responses.items():
+                    ai_result_data = json.loads(ai_result_json)
+                    ai_result_value = ai_result_data.get(trait.name)
 
                     row = {
-                        "Genus": organism.genus,
-                        "Species": organism.species,
-                        "Trait": trait.name,
-                        "Reference_Value": trait.values.reference_value,
-                        "AI_Model": model,
-                        "AI_Response": ai_value
+                        "genus": organism.genus,
+                        "species": organism.species,
+                        "trait": trait.name,
+                        "ref_range": trait.values.reference_value,
+                        "ai_model": model,
+                        "ai_result": ai_result_value
                     }
+                    print(f"row: {row}")
                     writer.writerow(row)

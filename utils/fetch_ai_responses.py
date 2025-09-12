@@ -5,7 +5,7 @@ from config import settings
 
 
 def fetch_ai_responses(prompt):
-    print(f"fetching response for prompt: {prompt}")
+    # fetch_ai_responses should return {model_name: ai_result_string}
     responses: dict[str, str] = {}
 
     for model_name, model_configuration in settings.AI_MODELS.items():
@@ -18,6 +18,7 @@ def fetch_ai_responses(prompt):
 
         # fetch claude response
         if model == "CLAUDE":
+            print(f"asking claude...")
             raw_response = client.messages.create(
                 model=version,
                 max_tokens=max_tokens,
@@ -27,6 +28,7 @@ def fetch_ai_responses(prompt):
 
         # fetch gemini response
         elif model == "GEMINI":
+            print(f"asking gemini...")
             raw_response = client.models.generate_content(
                 model=version,
                 contents=prompt
@@ -35,6 +37,7 @@ def fetch_ai_responses(prompt):
 
         # fetch deepseek response
         elif model == "DEEPSEEK":
+            print(f"asking deepseek...")
             raw_response = client.chat.completions.create(
                 model=version,
                 temperature=temperature,
@@ -44,6 +47,7 @@ def fetch_ai_responses(prompt):
 
         # fetch chatgpt response
         elif model == "CHATGPT":
+            print(f"asking chatgpt...")
             raw_response = client.chat.completions.create(
                 model=version,
                 temperature=temperature,
@@ -53,5 +57,5 @@ def fetch_ai_responses(prompt):
 
         else:
             print(f"Model {model} not found.")
-
+    print(f"responses from ai models:\n{responses}")
     return responses

@@ -1,0 +1,25 @@
+genus,species,trait,ref_range,ai_model,ai_result
+Crotalus,abyssus,ventral scale count,173–191,CHATGPT,25-30
+Crotalus,abyssus,ventral scale count,173–191,GEMINI,167-188
+Crotalus,abyssus,ventral scale count,173–191,DEEPSEEK,null
+Crotalus,abyssus,ventral scale count,173–191,CLAUDE,138-155
+Crotalus,abyssus,subcaudal scale count,18–29,CHATGPT,20-30
+Crotalus,abyssus,subcaudal scale count,18–29,GEMINI,22-36
+Crotalus,abyssus,subcaudal scale count,18–29,DEEPSEEK,21-30
+Crotalus,abyssus,subcaudal scale count,18–29,CLAUDE,24-32
+Crotalus,abyssus,dorsal scale count,23–27,CHATGPT,23-27
+Crotalus,abyssus,dorsal scale count,23–27,GEMINI,23-29
+Crotalus,abyssus,dorsal scale count,23–27,DEEPSEEK,25-25
+Crotalus,abyssus,dorsal scale count,23–27,CLAUDE,25-27
+Crotalus,adamanteus,ventral scale count,165–187,CHATGPT,200-250
+Crotalus,adamanteus,ventral scale count,165–187,GEMINI,160-187
+Crotalus,adamanteus,ventral scale count,165–187,DEEPSEEK,165-187
+Crotalus,adamanteus,ventral scale count,165–187,CLAUDE,165-175
+Crotalus,adamanteus,subcaudal scale count,20–33,CHATGPT,20-30
+Crotalus,adamanteus,subcaudal scale count,20–33,GEMINI,30-46
+Crotalus,adamanteus,subcaudal scale count,20–33,DEEPSEEK,21-29
+Crotalus,adamanteus,subcaudal scale count,20–33,CLAUDE,20-29
+Crotalus,adamanteus,dorsal scale count,25–31,CHATGPT,23-27
+Crotalus,adamanteus,dorsal scale count,25–31,GEMINI,29-35
+Crotalus,adamanteus,dorsal scale count,25–31,DEEPSEEK,25-27
+Crotalus,adamanteus,dorsal scale count,25–31,CLAUDE,25-31

@@ -38,4 +38,4 @@ AI_MODELS = {
 
 # set the input and output file paths
 INPUT_FILE_PATH = "data/reference_data/test_data.csv"
-OUTPUT_FILE_PATH = "data/program_data/test_program_data.csv"
+OUTPUT_FILE_PATH = "data/program_data/program_data.csv"

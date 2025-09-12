@@ -9,7 +9,7 @@ class Trait:
     name: str
     units: str | None
     value_format: str
-    values: TraitValue | None
+    values: TraitValue
 
     def __str__(self):
         return (f"Trait: {self.name}\n"

@@ -1,13 +1,1 @@
-Genus,Species,Trait,Reference_Value,AI_Model,AI_Response
-Acalyptophis,peronii,Ventral,140–222,CHATGPT,null
-Acalyptophis,peronii,Ventral,140–222,GEMINI,140-192
-Acalyptophis,peronii,Ventral,140–222,DEEPSEEK,135-166
-Acalyptophis,peronii,Ventral,140–222,CLAUDE,130-155
-Acalyptophis,peronii,Subcaudal,29–49,CHATGPT,100-120
-Acalyptophis,peronii,Subcaudal,29–49,GEMINI,28-49
-Acalyptophis,peronii,Subcaudal,29–49,DEEPSEEK,35-52
-Acalyptophis,peronii,Subcaudal,29–49,CLAUDE,30-47
-Acalyptophis,peronii,Dorsal,21–32,CHATGPT,15-19
-Acalyptophis,peronii,Dorsal,21–32,GEMINI,17-19
-Acalyptophis,peronii,Dorsal,21–32,DEEPSEEK,21-23
-Acalyptophis,peronii,Dorsal,21–32,CLAUDE,17-19
+
