@@ -40,10 +40,7 @@ def initialize_organisms(selected_traits) -> list[Organism]:
 
 
 if __name__ == '__main__':
-    default_responses = [
-        "Ven", "ventral scale count", "", "", "y", "SC", "subcaudal scale count", "", "", "y", "MSR", "dorsal scale count", "", "", "n",
-    ]
-    chosen_traits = determine_traits(True, default_responses)
+    chosen_traits = determine_traits()
     organisms = initialize_organisms(chosen_traits)
     print(f"created {len(organisms)} organism(s).")
 
