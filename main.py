@@ -1,6 +1,7 @@
 """
 This is the main script. It initializes organism and AI model objects from provided reference data and config file.
 """
+import asyncio
 
 from config import settings
 from csv import DictReader
@@ -38,7 +39,7 @@ def initialize_organisms(selected_traits) -> list[Organism]:
     return new_organisms
 
 
-if __name__ == '__main__':
+async def main():
     chosen_traits = determine_traits()
     organisms = initialize_organisms(chosen_traits)
     print(f"Found {len(organisms)} organism(s) in {settings.INPUT_FILE_PATH}")
@@ -50,7 +51,7 @@ if __name__ == '__main__':
         # fetch response for each trait
         for trait_name, prompt in prompts.items():
             print(f"\n\nasking models for the {trait_name} of {organism.genus} {organism.species}...")
-            ai_responses = fetch_ai_responses(prompt)
+            ai_responses = await fetch_ai_responses(prompt)
 
             # find trait by name and set ai_response
             for trait in organism.traits:
@@ -63,3 +64,7 @@ if __name__ == '__main__':
         output_results(organism)
 
     print(f"results saved in {settings.OUTPUT_FILE_PATH}")
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
