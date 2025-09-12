@@ -17,7 +17,7 @@ def determine_traits() -> list[Trait]:
             if trait_abbreviation in raw_traits and trait_abbreviation not in added_traits:
                 trait_name = input("Enter the non-abbreviated name of the trait (e.g. ventral scale count):\n")
                 units = input("If this trait has units enter the units of the trait, otherwise leave blank:\n")
-                value_format = input("Enter the expected format of the values for this trait (default: number-number or number or null):\n")
+                value_format = input('Enter the expected format of the values for this trait (default: "number-number" or "number" or null):\n')
                 if not value_format:
                     value_format = "number-number or number or null"
                 added_traits.append(

@@ -55,8 +55,8 @@ async def main():
 
             # find trait by name and set ai_response
             for trait in organism.traits:
-                if trait.name == trait_name:
-                    trait.values.set_ai_response(ai_responses)
+                for model, response in ai_responses.items():
+                    trait.values.set_ai_response(model, response)
                     print(f"updated ai_response for {organism}")
                     break
 
