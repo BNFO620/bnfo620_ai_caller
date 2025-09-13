@@ -39,7 +39,7 @@ SCHEMA = {
             "column_id": "str",
             "name": "str",
             "units": "str | None",
-            "value_format": "str",  # TODO: implement more complex parsing in the model
+            "value_format": "str",
             "values": {
                 "reference_value": "Interval",
                 "ai_response": {

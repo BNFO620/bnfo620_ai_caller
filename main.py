@@ -19,16 +19,15 @@ def initialize_organisms(selected_traits) -> list[Organism]:
             # create traits for each organism
             organism_traits = []
             for selected_trait in selected_traits:
-                organism_traits.append(Trait(
-                    column_id=selected_trait.column_id,
-                    name=selected_trait.name,
-                    units=selected_trait.units,
-                    value_format=selected_trait.value_format,
-                    values=TraitValue(
-                        reference=None,
-                        results={}
+                organism_traits.append(
+                    Trait(
+                        column_id=selected_trait.column_id,
+                        name=selected_trait.name,
+                        units=selected_trait.units,
+                        value_format=selected_trait.value_format,
+                        values=TraitValue(reference=None, results={})
                     )
-                ))
+                )
             new_organisms.append(
                 Organism(
                     row["Genus"],
@@ -48,12 +47,13 @@ async def main():
         prompts = generate_prompts(organism)
 
         # fetch response for each trait
-        for trait, prompt in prompts.items():
+        for trait, prompt in prompts:
             responses = await fetch_ai_responses(prompt)
 
             # update the organism with the response
             for model, response in responses.items():
                 trait.values.set_results(model, response)
+                print(f"\nupdated: {organism}")
                 break
 
         output_results(organism)

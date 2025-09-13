@@ -142,3 +142,5 @@ Crotalus,cerberus,subcaudal scale count,16–26,CHATGPT,17-24
 Crotalus,cerberus,subcaudal scale count,16–26,GEMINI,21-30
 Crotalus,cerberus,subcaudal scale count,16–26,DEEPSEEK,19-31
 Crotalus,cerberus,subcaudal scale count,16–26,CLAUDE,23-32
+Crotalus,abyssus,ventral scale count,"Interval(low=173.0, high=191.0, raw='173-191')",CHATGPT,"ModelResult(interval=Interval(low=None, high=None, raw='{""ventral scale count"": ""178-200""}'), raw='{""ventral scale count"": ""178-200""}', error=None)"
+Crotalus,adamanteus,ventral scale count,"Interval(low=165.0, high=187.0, raw='165-187')",CHATGPT,"ModelResult(interval=Interval(low=None, high=None, raw='{""ventral scale count"": ""160-180""}'), raw='{""ventral scale count"": ""160-180""}', error=None)"

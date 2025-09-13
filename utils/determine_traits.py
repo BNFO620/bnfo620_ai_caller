@@ -13,27 +13,25 @@ def determine_traits() -> list[Trait]:
         more_traits = "y"
 
         while more_traits == "y" and len(added_traits) < len(raw_traits):
-            trait_abbreviation = input("Choose your traits! Enter the exact column name of the trait:\n")
-            if trait_abbreviation in raw_traits and trait_abbreviation not in added_traits:
-                trait_name = input("Enter the non-abbreviated name of the trait (e.g. ventral scale count):\n")
-                units = input("If this trait has units enter the units of the trait, otherwise leave blank:\n")
-                value_format = input('Enter the expected format of the values for this trait (default: "number-number" or "number" or null):\n')
-                if not value_format:
-                    value_format = "number-number or number or null"
+            trait_abbreviation = input("Enter the exact column name of the trait:\n")
+            already_added = any(trait.column_id == trait_abbreviation for trait in added_traits)
+
+            if trait_abbreviation in raw_traits and not already_added:
+                trait_name = input("Enter the full name of the trait (e.g. ventral scale count):\n")
+                units = input("Units (leave blank if none):\n")
+                value_format = input('Expected value format (default: "number-number" or "number" or null):\n') or "number-number or number or null"
+
                 added_traits.append(
                     Trait(
                         column_id=trait_abbreviation,
                         name=trait_name,
                         units=units,
                         value_format=value_format,
-                        values=TraitValue(
-                            reference=None,
-                            results={}
-                        )
+                        values=TraitValue(reference=None, results={})
                     )
                 )
-                more_traits = input(f"{trait_name} added successfully! Do you want to add another trait? y/n:\n").lower().strip("")
+                more_traits = input(f"{trait_name} added successfully. Add another? y/n:\n").strip("").lower()
             else:
-                print("Invalid trait name. Please try again.")
+                print("Invalid or duplicate trait name. Please try again.")
     print(f"\n\nYou have added {len(added_traits)} trait(s) out of {len(raw_traits)} possible traits.")
     return added_traits

@@ -1,6 +1,6 @@
 """A single organism has many traits"""
-from dataclasses import dataclass
-from .trait_value import TraitValue
+from dataclasses import dataclass, field
+from .traitvalue import TraitValue
 
 
 @dataclass
@@ -11,6 +11,6 @@ class Trait:
     value_format: str
     values: TraitValue
 
-    def __str__(self):
-        return (f"{self.column_id} ({self.name})"
-                f"{self.values}")
+    def __str__(self) -> str:
+        return (f"\n{self.column_id} ({self.name}) "
+                f"\n{self.values}")
