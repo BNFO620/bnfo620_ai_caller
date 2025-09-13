@@ -41,10 +41,10 @@ SCHEMA = {
             "units": "str | None",
             "value_format": "str",
             "values": {
-                "reference_value": "Interval",
-                "ai_response": {
+                "reference_value": "str",
+                "results": {
                     "model": "str",
-                    "result": "Interval"
+                    "value": "str"
                 }
             }
         }
