@@ -43,7 +43,7 @@ async def fetch_claude(client, model, prompt):
 
 
 async def fetch_ai_responses(prompt):
-    print(f"fetching ai responses using the following prompt:\n{prompt}")
+    print(f"\n\nfetching ai responses using the following prompt:\n{prompt}")
     tasks = []
 
     for model_name, model_configuration in settings.AI_MODELS.items():
