@@ -49,13 +49,9 @@ async def main():
         # fetch response for each trait
         for trait, prompt in prompts:
             responses = await fetch_ai_responses(prompt)
+            trait.values.set_results(responses)
 
-            # update the organism with the response
-            for model, response in responses.items():
-                trait.values.set_results(model, response)
-                print(f"\nupdated: {organism}")
-                break
-
+        print(f"\nupdated: {organism}")
         output_results(organism)
 
     print(f"all done! results saved in {settings.OUTPUT_FILE_PATH}")
