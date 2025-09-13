@@ -1,6 +1,7 @@
 """
 A trait can have many values (reference values, chatgpt values, gemini values)
 """
+import json
 from dataclasses import dataclass
 from config import settings
 from csv import DictReader
@@ -25,5 +26,9 @@ class TraitValue:
                         self.reference = row[column_id]
                     return
 
-    def set_results(self, model: str, response: str) -> None:
-        self.results[model] = response
+    def set_results(self, results: dict) -> None:
+        for model, response in results.items():
+            parsed_response = json.loads(response)
+            for value in parsed_response.values():
+                self.results[model] = value
+                break
